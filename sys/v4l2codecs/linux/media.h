@@ -22,9 +22,9 @@
 
 #ifndef __KERNEL__
 #include <stdint.h>
-#define __user
 #endif
-#include "linux/types-compat.h"
+#include <linux/ioctl.h>
+#include <linux/types.h>
 
 struct media_device_info {
 	char driver[16];
@@ -127,6 +127,7 @@ struct media_device_info {
 #define MEDIA_ENT_F_PROC_VIDEO_STATISTICS	(MEDIA_ENT_F_BASE + 0x4006)
 #define MEDIA_ENT_F_PROC_VIDEO_ENCODER		(MEDIA_ENT_F_BASE + 0x4007)
 #define MEDIA_ENT_F_PROC_VIDEO_DECODER		(MEDIA_ENT_F_BASE + 0x4008)
+#define MEDIA_ENT_F_PROC_VIDEO_ISP		(MEDIA_ENT_F_BASE + 0x4009)
 
 /*
  * Switch and bridge entity functions
@@ -236,9 +237,9 @@ struct media_link_desc {
 struct media_links_enum {
 	__u32 entity;
 	/* Should have enough room for pads elements */
-	struct media_pad_desc __user *pads;
+	struct media_pad_desc *pads;
 	/* Should have enough room for links elements */
-	struct media_link_desc __user *links;
+	struct media_link_desc *links;
 	__u32 reserved[4];
 };
 

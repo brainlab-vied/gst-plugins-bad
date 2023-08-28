@@ -699,6 +699,8 @@ gst_nv_h264_dec_start_picture (GstH264Decoder * decoder,
     h264_params->dpb[i].PicIdx = -1;
 
   dpb_array = gst_h264_dpb_get_pictures_all (dpb);
+  g_return_val_if_fail (dpb_array != NULL, NULL);
+
   for (i = 0; i < dpb_array->len && i < G_N_ELEMENTS (h264_params->dpb); i++) {
     GstH264Picture *other = g_array_index (dpb_array, GstH264Picture *, i);
     GstNvDecoderFrame *other_frame;
